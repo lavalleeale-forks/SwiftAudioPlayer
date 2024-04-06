@@ -122,8 +122,13 @@ class SAPlayerPresenter {
         AudioClockDirector.shared.resetCache()
     }
     
-    func handleQueueStreamedAudio(withRemoteUrl url: URL, mediaInfo: SALockScreenInfo?, bitrate: SAPlayerBitrate) {
-        audioQueue.append(SAAudioQueueItem(loc: .remote, url: url, mediaInfo: mediaInfo, bitrate: bitrate))
+    func handleQueueStreamedAudio(withRemoteUrl url: URL, mediaInfo: SALockScreenInfo?, bitrate: SAPlayerBitrate, first: Bool) {
+        let item = SAAudioQueueItem(loc: .remote, url: url, mediaInfo: mediaInfo, bitrate: bitrate)
+        if first {
+            audioQueue.insert(item, at: 0)
+        } else {
+            audioQueue.append(item)
+        }
     }
     
     func handleQueueSavedAudio(withSavedUrl url: URL, mediaInfo: SALockScreenInfo?) {
