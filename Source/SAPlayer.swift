@@ -548,6 +548,10 @@ extension SAPlayer {
     public func clear() {
         presenter.handleClear()
     }
+    
+    public func skip() {
+        presenter.playNextAudioIfExists()
+    }
 }
 
 
