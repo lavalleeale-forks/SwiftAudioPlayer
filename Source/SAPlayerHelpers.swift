@@ -34,7 +34,9 @@ public typealias UTC = Int
 /**
  Use to set what will be displayed in the lockscreen.
  */
-public struct SALockScreenInfo {
+public struct SALockScreenInfo: Identifiable {
+    public var id = UUID()
+    
     public var title: String
     public var artist: String
     public var albumTitle: String?
