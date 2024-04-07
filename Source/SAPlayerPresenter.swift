@@ -173,10 +173,6 @@ extension SAPlayerPresenter {
     func handleAudioRateChanged(rate: Float) {
         delegate?.updateLockScreenChangePlaybackRate(speed: rate)
     }
-    
-    func handleScrubbingIntervalsChanged() {
-        delegate?.updateLockScreenSkipIntervals()
-    }
 }
 
 //MARK:- For lock screen
@@ -195,15 +191,9 @@ extension SAPlayerPresenter : LockScreenViewPresenter {
         delegate?.pauseEngine()
         self.delegate?.updateLockScreenPaused()
     }
-
-    func handleSkipBackward() {
-        guard let backward = delegate?.skipForwardSeconds else { return }
-        handleSeek(toNeedle: (needle ?? 0) - backward)
-    }
     
-    func handleSkipForward() {
-        guard let forward = delegate?.skipForwardSeconds else { return }
-        handleSeek(toNeedle: (needle ?? 0) + forward)
+    func handleNext() {
+        self.playNextAudioIfExists()
     }
 
     func handleSeek(toNeedle needle: Needle) {

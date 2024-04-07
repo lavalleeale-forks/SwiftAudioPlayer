@@ -136,24 +136,6 @@ public class SAPlayer {
     }
     
     /**
-     Corresponding to the skipping forward button on the media player on the lockscreen. Default is set to 30 seconds.
-     */
-    public var skipForwardSeconds: Double = 30 {
-        didSet {
-            presenter.handleScrubbingIntervalsChanged()
-        }
-    }
-    
-    /**
-     Corresponding to the skipping backwards button on the media player on the lockscreen. Default is set to 15 seconds.
-     */
-    public var skipBackwardSeconds: Double = 15 {
-        didSet {
-            presenter.handleScrubbingIntervalsChanged()
-        }
-    }
-    
-    /**
      List of [AVAudioUnit](https://developer.apple.com/documentation/avfoundation/audio_track_engineering/audio_engine_building_blocks/audio_enhancements) audio modifiers to pass to the engine on initialization.
      
      - Important: To have the intended effects, the list of modifiers must be finalized before initializing the audio to be played. The modifers are added to the engine in order of the list.
@@ -361,24 +343,6 @@ extension SAPlayer {
      */
     public func pause() {
         presenter.handlePause()
-    }
-    
-    /**
-     Attempts to skip forward in audio even if nothing playable is loaded (aka still in buffering state or no audio is initialized). The interval to which to skip forward is defined by `SAPlayer.shared.skipForwardSeconds`.
-     
-     - Note: The skipping is limited to the duration of the audio, if the intended skip is past the duration of the current audio, the skip will just go to the end.
-     */
-    public func skipForward() {
-        presenter.handleSkipForward()
-    }
-    
-    /**
-     Attempts to skip backwards in audio even if nothing playable is loaded (aka still in buffering state or no audio is initialized). The interval to which to skip backwards is defined by `SAPlayer.shared.skipBackwardSeconds`.
-     
-     - Note: The skipping is limited to the playable timestamps, if the intended skip is below 0 seconds, the skip will just go to 0 seconds.
-     */
-    public func skipBackwards() {
-        presenter.handleSkipBackward()
     }
     
     /**
